@@ -8,22 +8,8 @@ class GitWt < Formula
   license "MIT"
   head "https://github.com/tgrnd/git-wt.git", branch: "main"
 
-  depends_on "jq"
-
   def install
-    # The create hook finds git-wt beside itself, so keep them together in libexec.
-    libexec.install "git-wt", "claude-worktree-create.sh", "claude-worktree-remove.sh"
-    bin.install_symlink libexec/"git-wt"
-  end
-
-  def caveats
-    <<~EOS
-      To send Claude Code's worktrees through git-wt, add to ~/.claude/settings.json:
-        "hooks": {
-          "WorktreeCreate": [{ "hooks": [{ "type": "command", "command": "#{opt_libexec}/claude-worktree-create.sh" }] }],
-          "WorktreeRemove": [{ "hooks": [{ "type": "command", "command": "#{opt_libexec}/claude-worktree-remove.sh" }] }]
-        }
-    EOS
+    bin.install "git-wt"
   end
 
   test do
@@ -35,11 +21,10 @@ class GitWt < Formula
 
     cd "repo" do
       assert_match %r{/wt-home/repo-\h{8}/wt/a$}, shell_output("git wt path wt/a").chomp
+      system "git", "wt", "add", "--quiet", "wt/b"
+      created = shell_output("git wt path wt/b").chomp
+      assert_path_exists "#{created}/.git"
+      refute_path_exists "wt/b"
     end
-
-    input = { session_id: "s", transcript_path: "/dev/null", cwd: (testpath/"repo").to_s, name: "x" }.to_json
-    created = pipe_output(libexec/"claude-worktree-create.sh", input).chomp
-    assert_match %r{/wt-home/repo-\h{8}/x$}, created
-    assert_path_exists "#{created}/.git"
   end
 end
