@@ -5,6 +5,7 @@ class GitWt < Formula
   url "https://github.com/tgrnd/git-wt.git",
       tag:      "v0.1.0",
       revision: "7d00fbe5064ef2f55fe9cceda87e2412d92b4177"
+  license "MIT"
   head "https://github.com/tgrnd/git-wt.git", branch: "main"
 
   depends_on "jq"
