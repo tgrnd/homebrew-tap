@@ -1,7 +1,7 @@
-# trev-gulls/tap
+# tgrnd/tap
 
 ```sh
-brew install trev-gulls/tap/<formula>
+brew install tgrnd/tap/<formula>
 ```
 
 | Formula  | What it is                                                                 |

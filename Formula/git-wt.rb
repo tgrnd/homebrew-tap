@@ -1,12 +1,12 @@
 class GitWt < Formula
   desc "Git worktree add that never nests worktrees inside a checkout"
-  homepage "https://github.com/trev-gulls/git-wt"
-  # Private repo: fetched with git (your SSH key or credential helper), not curl.
-  # The revision pins the tag, so no sha256 is needed.
-  url "https://github.com/trev-gulls/git-wt.git",
+  homepage "https://github.com/tgrnd/git-wt"
+  # Fetched with git; the revision pins the tag, so no sha256 is needed.
+  url "https://github.com/tgrnd/git-wt.git",
       tag:      "v0.1.0",
       revision: "7d00fbe5064ef2f55fe9cceda87e2412d92b4177"
-  head "https://github.com/trev-gulls/git-wt.git", branch: "main"
+  license "MIT"
+  head "https://github.com/tgrnd/git-wt.git", branch: "main"
 
   depends_on "jq"
 
