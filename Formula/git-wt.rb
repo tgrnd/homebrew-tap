@@ -3,8 +3,8 @@ class GitWt < Formula
   homepage "https://github.com/tgrnd/git-wt"
   # Fetched with git; the revision pins the tag, so no sha256 is needed.
   url "https://github.com/tgrnd/git-wt.git",
-      tag:      "v0.1.0",
-      revision: "7d00fbe5064ef2f55fe9cceda87e2412d92b4177"
+      tag:      "v0.2.0",
+      revision: "49217f56ac204d39338cbdaed7d4759515575a3c"
   license "MIT"
   head "https://github.com/tgrnd/git-wt.git", branch: "main"
 
